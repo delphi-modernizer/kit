@@ -28,14 +28,14 @@ jobs:
         run: npx --yes markdownlint-cli2@0.24.0
 
   comments:
-    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@e665407fbae0afc330917a055875b43d719997d9
+    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
     with:
-      standards-ref: e665407fbae0afc330917a055875b43d719997d9
+      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
 
   drift:
-    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@e665407fbae0afc330917a055875b43d719997d9
+    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
     with:
-      standards-ref: e665407fbae0afc330917a055875b43d719997d9
+      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
       files: |
         docs/COMMENTS.md=COMMENTS.md
         targets/dotnet/quality-baseline/.editorconfig=standards/csharp/.editorconfig
@@ -46,16 +46,16 @@ jobs:
         targets/jvm/quality-baseline/docs/COMMENTS.md=COMMENTS.md
 
   dependencies:
-    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@e665407fbae0afc330917a055875b43d719997d9
+    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
 
   dotnet-baseline:
-    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@e665407fbae0afc330917a055875b43d719997d9
+    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
     with:
       working-directory: targets/dotnet/quality-baseline
       solution: Modernized.slnx
       os: '["ubuntu-latest", "windows-latest"]'
 
   jvm-baseline:
-    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@e665407fbae0afc330917a055875b43d719997d9
+    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
     with:
       working-directory: targets/jvm/quality-baseline
