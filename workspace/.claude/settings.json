@@ -26,6 +26,7 @@
       "Bash(dmz approve *)",
       "Bash(dmz revoke *)",
       "Bash(dmz init *)",
+      "Bash(dmz stack *)",
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(git reset *)",
