@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/delphi-modernizer/kit/spec/approvals.schema.json",
+  "title": ".modernizer/approvals.json",
+  "description": "Append-only record of gate approvals and revocations. Only a person writes it, through the studio or dmz approve.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gate": {
+            "enum": [
+              "G0",
+              "G1",
+              "G2",
+              "G3",
+              "G4"
+            ]
+          },
+          "action": {
+            "enum": [
+              "approve",
+              "revoke"
+            ]
+          },
+          "by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "note": {
+            "type": "string"
+          },
+          "contentHash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "commit": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{40,64}$"
+          }
+        },
+        "required": [
+          "gate",
+          "action",
+          "by",
+          "at",
+          "contentHash"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "entries"
+  ],
+  "additionalProperties": false
+}

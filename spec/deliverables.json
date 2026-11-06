@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "owners": {
+    "PA": "Principal Architect",
+    "WS01": "Legacy Discovery",
+    "WS02": "Requirements",
+    "WS03": "Architecture",
+    "WS04": "Data & Integration",
+    "WS05": "Migration Planning",
+    "WS06": "Quality & Security"
+  },
+  "statuses": [
+    "template",
+    "draft",
+    "in-review"
+  ],
+  "deliverables": [
+    {
+      "id": "D01",
+      "title": "Project Charter and Modernization Objectives",
+      "file": "docs/00-project-charter/D01-project-charter.md",
+      "owner": "PA",
+      "contributors": [],
+      "gate": "G0"
+    },
+    {
+      "id": "D02",
+      "title": "System Inventory and Repository Assessment",
+      "file": "docs/01-discovery/D02-system-inventory.md",
+      "owner": "WS01",
+      "contributors": [],
+      "gate": "G1"
+    },
+    {
+      "id": "D03",
+      "title": "Functional Requirements Specification",
+      "file": "docs/02-functional-requirements/D03-functional-requirements.md",
+      "owner": "WS02",
+      "contributors": [
+        "WS01"
+      ],
+      "gate": "G2"
+    },
+    {
+      "id": "D04",
+      "title": "Non-Functional Requirements Specification",
+      "file": "docs/03-non-functional-requirements/D04-non-functional-requirements.md",
+      "owner": "WS02",
+      "contributors": [
+        "WS06"
+      ],
+      "gate": "G2"
+    },
+    {
+      "id": "D05",
+      "title": "Current-State Architecture",
+      "file": "docs/04-current-state/D05-current-state-architecture.md",
+      "owner": "WS03",
+      "contributors": [
+        "WS01"
+      ],
+      "gate": "G3"
+    },
+    {
+      "id": "D06",
+      "title": "Technical Debt and Risk Assessment",
+      "file": "docs/04-current-state/D06-technical-debt-and-risk.md",
+      "owner": "WS01",
+      "contributors": [
+        "WS03"
+      ],
+      "gate": "G3"
+    },
+    {
+      "id": "D07",
+      "title": "Target-State Architecture",
+      "file": "docs/05-target-architecture/D07-target-architecture.md",
+      "owner": "WS03",
+      "contributors": [],
+      "gate": "G3"
+    },
+    {
+      "id": "D08",
+      "title": "Technology Stack Evaluation",
+      "file": "docs/05-target-architecture/D08-technology-stack-evaluation.md",
+      "owner": "WS03",
+      "contributors": [],
+      "gate": "G3"
+    },
+    {
+      "id": "D09",
+      "title": "Architecture Decision Records",
+      "file": "docs/05-target-architecture/adr/README.md",
+      "owner": "WS03",
+      "contributors": [],
+      "gate": "G3"
+    },
+    {
+      "id": "D10",
+      "title": "Data and Database Migration Strategy",
+      "file": "docs/06-data-migration/D10-data-migration-strategy.md",
+      "owner": "WS04",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D11",
+      "title": "Integration and Interoperability Strategy",
+      "file": "docs/07-integrations/D11-integration-strategy.md",
+      "owner": "WS04",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D12",
+      "title": "Compliance and Security Assessment",
+      "file": "docs/08-security-compliance/D12-compliance-and-security.md",
+      "owner": "WS06",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D13",
+      "title": "Migration Strategy and Work Breakdown Structure",
+      "file": "docs/09-migration-strategy/D13-migration-strategy-and-wbs.md",
+      "owner": "WS05",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D14",
+      "title": "Testing and Quality Engineering Strategy",
+      "file": "docs/10-testing-quality/D14-testing-strategy.md",
+      "owner": "WS06",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D15",
+      "title": "DevOps and Deployment Strategy",
+      "file": "docs/11-devops-operations/D15-devops-and-deployment.md",
+      "owner": "WS05",
+      "contributors": [
+        "WS06"
+      ],
+      "gate": "G4"
+    },
+    {
+      "id": "D16",
+      "title": "Risk Register and Mitigation Plan",
+      "file": "docs/12-risk-management/D16-risk-register.md",
+      "owner": "PA",
+      "contributors": [
+        "WS01",
+        "WS02",
+        "WS03",
+        "WS04",
+        "WS05",
+        "WS06"
+      ],
+      "gate": "G4"
+    },
+    {
+      "id": "D17",
+      "title": "Project Roadmap and Milestones",
+      "file": "docs/13-project-roadmap/D17-roadmap.md",
+      "owner": "WS05",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D18",
+      "title": "Resource, Effort and Cost Estimates",
+      "file": "docs/13-project-roadmap/D18-estimates.md",
+      "owner": "WS05",
+      "contributors": [],
+      "gate": "G4"
+    },
+    {
+      "id": "D19",
+      "title": "Production Cutover and Rollback Strategy",
+      "file": "docs/11-devops-operations/D19-cutover-and-rollback.md",
+      "owner": "WS05",
+      "contributors": [
+        "WS04",
+        "WS06"
+      ],
+      "gate": "G4"
+    },
+    {
+      "id": "D20",
+      "title": "Definition of Done and Acceptance Criteria",
+      "file": "docs/14-acceptance-criteria/D20-definition-of-done.md",
+      "owner": "WS02",
+      "contributors": [
+        "WS06"
+      ],
+      "gate": "G4"
+    }
+  ]
+}

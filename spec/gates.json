@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "gates": [
+    {
+      "id": "G0",
+      "title": "Initialized",
+      "approves": "Scope, the target stack or its explicit deferral, and the essential context.",
+      "requires": {
+        "deliverables": [
+          {
+            "id": "D01",
+            "minStatus": "draft"
+          }
+        ],
+        "conditions": [
+          "legacy-attached",
+          "target-stack-recorded"
+        ]
+      },
+      "alsoHashes": [
+        "modernizer.json"
+      ]
+    },
+    {
+      "id": "G1",
+      "title": "Discovery baseline",
+      "approves": "What is known, discovered and unknown about the legacy system.",
+      "requires": {
+        "deliverables": [
+          {
+            "id": "D02",
+            "minStatus": "in-review"
+          }
+        ],
+        "conditions": [
+          "scan-present",
+          "trace-clean"
+        ]
+      },
+      "alsoHashes": []
+    },
+    {
+      "id": "G2",
+      "title": "Requirements baseline",
+      "approves": "Functional and non-functional requirements with evidence.",
+      "requires": {
+        "deliverables": [
+          {
+            "id": "D03",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D04",
+            "minStatus": "in-review"
+          }
+        ],
+        "conditions": [
+          "trace-clean"
+        ]
+      },
+      "alsoHashes": []
+    },
+    {
+      "id": "G3",
+      "title": "Architecture baseline",
+      "approves": "Current and target architecture, the stack evaluation and the ADRs.",
+      "requires": {
+        "deliverables": [
+          {
+            "id": "D05",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D06",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D07",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D08",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D09",
+            "minStatus": "in-review"
+          }
+        ],
+        "conditions": [
+          "target-stack-decided",
+          "trace-clean"
+        ]
+      },
+      "alsoHashes": [
+        "modernizer.json"
+      ]
+    },
+    {
+      "id": "G4",
+      "title": "Approved Modernization Baseline",
+      "approves": "The complete plan; implementation may start.",
+      "requires": {
+        "deliverables": [
+          {
+            "id": "D01",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D02",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D03",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D04",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D05",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D06",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D07",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D08",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D09",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D10",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D11",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D12",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D13",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D14",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D15",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D16",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D17",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D18",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D19",
+            "minStatus": "in-review"
+          },
+          {
+            "id": "D20",
+            "minStatus": "in-review"
+          }
+        ],
+        "conditions": [
+          "trace-strict-clean"
+        ]
+      },
+      "alsoHashes": [
+        "modernizer.json"
+      ],
+      "unlocks": "implementation"
+    }
+  ],
+  "conditions": {
+    "legacy-attached": "legacy/ contains at least one Delphi project or unit file.",
+    "target-stack-recorded": "modernizer.json names a target stack (dotnet or jvm) or records it as deferred.",
+    "target-stack-decided": "modernizer.json names dotnet or jvm; deferred is not enough.",
+    "scan-present": ".modernizer/scans/latest/inventory.json exists and was produced from the current legacy/ tree.",
+    "trace-clean": "dmz trace reports no errors.",
+    "trace-strict-clean": "dmz trace --strict reports no errors; warnings count as errors."
+  }
+}

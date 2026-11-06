@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/delphi-modernizer/kit/spec/front-matter.schema.json",
+  "title": "Deliverable front-matter",
+  "description": "YAML front-matter at the top of every file under docs/. A deliverable file carries id; a supporting file carries part-of.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^D(0[1-9]|1[0-9]|20)$"
+    },
+    "part-of": {
+      "type": "string",
+      "pattern": "^D(0[1-9]|1[0-9]|20)$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "enum": [
+        "PA",
+        "WS01",
+        "WS02",
+        "WS03",
+        "WS04",
+        "WS05",
+        "WS06"
+      ]
+    },
+    "status": {
+      "enum": [
+        "template",
+        "draft",
+        "in-review"
+      ]
+    }
+  },
+  "required": [
+    "title",
+    "owner",
+    "status"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "required": [
+        "part-of"
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

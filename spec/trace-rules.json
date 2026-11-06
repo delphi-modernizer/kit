@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "TR001",
+      "name": "duplicate-definition",
+      "severity": "error",
+      "description": "An ID is defined more than once."
+    },
+    {
+      "id": "TR002",
+      "name": "dangling-reference",
+      "severity": "error",
+      "description": "An ID is referenced but defined nowhere."
+    },
+    {
+      "id": "TR003",
+      "name": "definition-outside-home",
+      "severity": "error",
+      "description": "An ID is defined outside the files its kind allows (ids.json home)."
+    },
+    {
+      "id": "TR004",
+      "name": "broken-evidence",
+      "severity": "error",
+      "description": "An evidence link names a file that does not exist under legacy/, or a line range outside it."
+    },
+    {
+      "id": "TR005",
+      "name": "missing-evidence",
+      "severity": "error",
+      "kinds": [
+        "BR"
+      ],
+      "description": "A business rule has no evidence link in its section."
+    },
+    {
+      "id": "TR006",
+      "name": "untraced-requirement",
+      "severity": "error",
+      "kinds": [
+        "FR"
+      ],
+      "traceTo": [
+        "BR"
+      ],
+      "evidenceSatisfies": true,
+      "description": "A functional requirement references no business rule and has no evidence link."
+    },
+    {
+      "id": "TR007",
+      "name": "uncovered-requirement",
+      "severity": "warning",
+      "strictSeverity": "error",
+      "kinds": [
+        "FR",
+        "NFR"
+      ],
+      "coveredBy": [
+        "TC"
+      ],
+      "description": "No test scenario references the requirement."
+    },
+    {
+      "id": "TR008",
+      "name": "unmitigated-risk",
+      "severity": "warning",
+      "strictSeverity": "error",
+      "kinds": [
+        "RISK"
+      ],
+      "column": "Mitigation",
+      "description": "A risk row has an empty Mitigation cell."
+    },
+    {
+      "id": "TR009",
+      "name": "open-question",
+      "severity": "warning",
+      "strictSeverity": "error",
+      "kinds": [
+        "Q"
+      ],
+      "column": "Status",
+      "openValues": [
+        "Open"
+      ],
+      "description": "A question is still open."
+    },
+    {
+      "id": "TR010",
+      "name": "open-conflict",
+      "severity": "warning",
+      "strictSeverity": "error",
+      "kinds": [
+        "CF"
+      ],
+      "column": "Status",
+      "openValues": [
+        "Open"
+      ],
+      "description": "A baseline conflict is still open."
+    },
+    {
+      "id": "TR011",
+      "name": "invalid-adr-status",
+      "severity": "error",
+      "kinds": [
+        "ADR"
+      ],
+      "field": "Status",
+      "allowed": [
+        "Proposed",
+        "Accepted",
+        "Rejected",
+        "Superseded",
+        "Deprecated"
+      ],
+      "description": "An ADR has no **Status:** line, or its value is not an allowed status."
+    },
+    {
+      "id": "TR012",
+      "name": "invalid-front-matter",
+      "severity": "error",
+      "description": "A deliverable file has missing or invalid front-matter (front-matter.schema.json), or its id does not match deliverables.json."
+    },
+    {
+      "id": "TR013",
+      "name": "malformed-id",
+      "severity": "error",
+      "description": "Text looks like an ID of a known kind but does not match its pattern, for example FR-12 or NFR-FOO-001."
+    },
+    {
+      "id": "TR014",
+      "name": "missing-deliverable",
+      "severity": "error",
+      "description": "A file that deliverables.json lists does not exist."
+    }
+  ],
+  "malformedCandidate": "(?<![A-Za-z0-9_-])(?:(?:DEC|ASM|Q|CF|BR|FR|WF|TD|ADR|DM|INT|CMP|WP|TC|QG|RISK|MS)-\\d[A-Za-z0-9-]*|NFR-[A-Za-z0-9][A-Za-z0-9-]*)(?![A-Za-z0-9_])"
+}
