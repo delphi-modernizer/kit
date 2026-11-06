@@ -84,6 +84,7 @@ class KitValidator:
         self.report = Report()
         self.spec = {name: self._load_json(f"spec/{name}.json") for name in ("ids", "deliverables", "gates")}
         self.spec["trace-rules"] = self._load_json("spec/trace-rules.json")
+        self.spec["recipes"] = self._load_json("spec/recipes.json")
 
     def run(self) -> Report:
         if all(self.spec.values()):
@@ -92,6 +93,7 @@ class KitValidator:
             for pack in sorted((self.root / "targets").glob("*/workspace")):
                 self._check_docs(pack, is_template=False)
             self._check_agents_and_skills()
+            self._check_recipes()
             self._check_settings()
         self._check_links()
 
@@ -237,6 +239,21 @@ class KitValidator:
         for skill in sorted(skills):
             if f"/{skill}`" not in claude_md:
                 self.report.add("workspace/CLAUDE.md", f"does not list the skill /{skill}")
+
+    def _check_recipes(self) -> None:
+        claude = self.root / "workspace" / ".claude"
+        deliverables = {d["id"] for d in self.spec["deliverables"]["deliverables"]}
+        ids = [recipe["id"] for recipe in self.spec["recipes"]["recipes"]]
+        if len(ids) != len(set(ids)):
+            self.report.add("spec/recipes.json", "recipe ids must be unique")
+        for recipe in self.spec["recipes"]["recipes"]:
+            if not (claude / "agents" / f"{recipe['agent']}.md").is_file():
+                self.report.add("spec/recipes.json", f"{recipe['id']} names unknown agent {recipe['agent']}")
+            if not (claude / "skills" / recipe["skill"] / "SKILL.md").is_file():
+                self.report.add("spec/recipes.json", f"{recipe['id']} names unknown skill {recipe['skill']}")
+            for written in recipe["writes"]:
+                if written not in deliverables:
+                    self.report.add("spec/recipes.json", f"{recipe['id']} writes unknown deliverable {written}")
 
     def _check_settings(self) -> None:
         settings = self._load_json("workspace/.claude/settings.json")

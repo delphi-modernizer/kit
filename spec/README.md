@@ -10,6 +10,7 @@ breaking change is a major kit version (see [../docs/VERSIONING.md](../docs/VERS
 | [deliverables.json](deliverables.json) | D01–D20: title, file, owner, contributors and the gate that approves it |
 | [gates.json](gates.json) | G0–G4: required deliverable statuses, named conditions, extra hashed files |
 | [trace-rules.json](trace-rules.json) | TR001–TR014: what `dmz trace` reports, at which severity |
+| [recipes.json](recipes.json) | The agent runs the studio and `dmz run` offer: agent, skill, argument and the deliverables each writes |
 | [front-matter.schema.json](front-matter.schema.json) | The YAML front-matter every file under `docs/` carries |
 | [workspace.schema.json](workspace.schema.json) | `modernizer.json` |
 | [approvals.schema.json](approvals.schema.json) | `.modernizer/approvals.json` |
@@ -103,7 +104,11 @@ Every finding is labelled with how it is known, at the start of the statement:
 
 ## Gates and content hashes
 
-A gate's approval records a SHA-256 over the gate's deliverable files, their supporting files, and the files in
-`alsoHashes`: each file's workspace-relative path and its content with line endings normalised to LF, in ordinal path
-order. When the hash no longer matches, the approval is stale and the next gate is blocked until a person approves
-again.
+A gate's approval records a SHA-256 content hash over the gate's files: the main file and every supporting
+(`part-of`) file of each deliverable the gate requires, plus the files in its `alsoHashes`. For each file, in ordinal
+order of its workspace-relative path with `/` separators, the hash takes the UTF-8 bytes of the path, a NUL byte, the
+file's bytes with every CR LF pair replaced by LF, and a NUL byte. A missing file contributes its path and two NUL
+bytes. The record stores the hash as `sha256:` followed by 64 lowercase hex digits.
+
+When the current hash differs from the recorded one, the approval is stale, and the next gate stays closed until a
+person approves again.

@@ -89,6 +89,16 @@ class ValidateTests(unittest.TestCase):
 
             self.assertTrue(any("unknown skill write-poetry" in p for p in problems_in(root)))
 
+    def test_a_recipe_naming_an_unknown_skill_is_reported(self) -> None:
+        with KitCopy() as root:
+            recipes = root / "spec/recipes.json"
+            recipes.write_text(
+                recipes.read_text(encoding="utf-8").replace('"skill": "write-frs"', '"skill": "write-sonnets"'),
+                encoding="utf-8",
+            )
+
+            self.assertTrue(any("unknown skill write-sonnets" in p for p in problems_in(root)))
+
     def test_a_broken_relative_link_is_reported(self) -> None:
         with KitCopy() as root:
             readme = root / "README.md"
