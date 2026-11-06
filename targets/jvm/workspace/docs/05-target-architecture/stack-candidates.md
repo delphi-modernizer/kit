@@ -24,7 +24,7 @@ each candidate's current licence and support policy at evaluation time.
 | Authentication and authorisation | Spring Security, OpenID Connect with an identity provider | |
 | Background jobs | Spring scheduling, Quartz, JobRunr | Delphi batch programs and timers map here |
 | Messaging and integration | Spring for Apache Kafka, RabbitMQ, Jakarta Messaging, gRPC | |
-| Caching | Caffeine, Redis | only where NFR-PERF requires it |
+| Caching | Caffeine, Redis | only where a performance requirement needs it |
 | API | Spring MVC or WebFlux, Jakarta REST, gRPC | |
 | Testing | JUnit, Mockito, AssertJ, Testcontainers, ArchUnit, ApprovalTests (golden master) | |
 | Build and deployment | Maven or Gradle, GitHub Actions with the organization's `java-ci`, containers | |

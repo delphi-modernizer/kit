@@ -24,7 +24,7 @@ each candidate's current licence and support policy at evaluation time.
 | Authentication and authorisation | ASP.NET Core Identity, OpenID Connect with an identity provider, Windows authentication | depends on where users authenticate today |
 | Background jobs | Hosted services, Quartz.NET, Hangfire | Delphi batch programs and timers map here |
 | Messaging and integration | RabbitMQ.Client, Confluent.Kafka, Azure Service Bus, gRPC | MassTransit 9 and later is commercially licensed |
-| Caching | `HybridCache`, `IMemoryCache`, Redis | only where NFR-PERF requires it |
+| Caching | `HybridCache`, `IMemoryCache`, Redis | only where a performance requirement needs it |
 | API | ASP.NET Core minimal APIs or controllers, gRPC | |
 | Testing | xUnit v3, NSubstitute, Testcontainers, Verify (golden master) | MediatR, AutoMapper and FluentAssertions are excluded by the engineering standards |
 | Build and deployment | .NET SDK, GitHub Actions with the organization's `dotnet-ci`, MSIX or containers | |

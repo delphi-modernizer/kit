@@ -49,6 +49,13 @@ class ValidateTests(unittest.TestCase):
 
             self.assertEqual(problems_in(root), [])
 
+    def test_a_malformed_id_in_a_target_pack_is_reported(self) -> None:
+        with KitCopy() as root:
+            pack = root / "targets/jvm/workspace/docs/05-target-architecture/stack-candidates.md"
+            pack.write_text(pack.read_text(encoding="utf-8") + "\nOnly where NFR-PERF says so.\n", encoding="utf-8")
+
+            self.assertTrue(any("NFR-PERF" in p for p in problems_in(root)))
+
     def test_a_write_permission_rule_is_reported(self) -> None:
         with KitCopy() as root:
             settings = root / "workspace/.claude/settings.json"

@@ -204,6 +204,12 @@ class KitValidator:
             elif expected is not None:
                 self.report.add(shown, f"is the file of {expected['id']} but declares part-of instead of id")
 
+            malformed = re.compile(self.spec["trace-rules"]["malformedCandidate"])
+            whole = re.compile("^(?:" + "|".join(f"(?:{k['pattern']})" for k in self.spec["ids"]["kinds"]) + ")$")
+            bad = sorted({m.group(0) for m in malformed.finditer(visible_text(text)) if not whole.match(m.group(0))})
+            if bad:
+                self.report.add(shown, f"text that looks like an ID but is not one would fail TR013: {bad}")
+
             if is_template:
                 if scalar(front, "status") != "template":
                     self.report.add(shown, "a workspace template must have status template")
