@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import shutil
 import tempfile
 import unittest
@@ -80,6 +81,24 @@ class ValidateTests(unittest.TestCase):
             )
 
             self.assertTrue(any("title or owner differs" in p for p in problems_in(root)))
+
+    def test_a_gate_without_a_name_is_reported(self) -> None:
+        with KitCopy() as root:
+            gates = root / "spec/gates.json"
+            spec = json.loads(gates.read_text(encoding="utf-8"))
+            del spec["gates"][1]["name"]
+            gates.write_text(json.dumps(spec), encoding="utf-8")
+
+            self.assertTrue(any("G1 has no name" in p for p in problems_in(root)))
+
+    def test_two_gates_with_one_name_are_reported(self) -> None:
+        with KitCopy() as root:
+            gates = root / "spec/gates.json"
+            spec = json.loads(gates.read_text(encoding="utf-8"))
+            spec["gates"][2]["name"] = spec["gates"][1]["name"]
+            gates.write_text(json.dumps(spec), encoding="utf-8")
+
+            self.assertTrue(any("gate names must be unique" in p for p in problems_in(root)))
 
     def test_a_missing_deliverable_file_is_reported(self) -> None:
         with KitCopy() as root:

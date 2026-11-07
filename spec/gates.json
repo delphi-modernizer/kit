@@ -3,6 +3,7 @@
   "gates": [
     {
       "id": "G0",
+      "name": "Project setup",
       "title": "Initialized",
       "approves": "Scope, the target stack or its explicit deferral, and the essential context.",
       "requires": {
@@ -23,6 +24,7 @@
     },
     {
       "id": "G1",
+      "name": "Discovery",
       "title": "Discovery baseline",
       "approves": "What is known, discovered and unknown about the legacy system.",
       "requires": {
@@ -41,6 +43,7 @@
     },
     {
       "id": "G2",
+      "name": "Requirements",
       "title": "Requirements baseline",
       "approves": "Functional and non-functional requirements with evidence.",
       "requires": {
@@ -62,6 +65,7 @@
     },
     {
       "id": "G3",
+      "name": "Architecture",
       "title": "Architecture baseline",
       "approves": "Current and target architecture, the stack evaluation and the ADRs.",
       "requires": {
@@ -98,6 +102,7 @@
     },
     {
       "id": "G4",
+      "name": "Final plan",
       "title": "Approved Modernization Baseline",
       "approves": "The complete plan; implementation may start.",
       "requires": {

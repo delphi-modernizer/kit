@@ -8,7 +8,7 @@ breaking change is a major kit version (see [../docs/VERSIONING.md](../docs/VERS
 | --- | --- |
 | [ids.json](ids.json) | Every record kind: prefix, pattern, the files allowed to define it, and how it is defined |
 | [deliverables.json](deliverables.json) | D01–D20: title, file, owner, contributors and the gate that approves it |
-| [gates.json](gates.json) | G0–G4: required deliverable statuses, named conditions, extra hashed files |
+| [gates.json](gates.json) | G0–G4: the name people read, required deliverable statuses, named conditions, extra hashed files |
 | [trace-rules.json](trace-rules.json) | TR001–TR014: what `dmz trace` reports, at which severity |
 | [recipes.json](recipes.json) | The agent runs the studio and `dmz run` offer: agent, skill, argument and the deliverables each writes |
 | [front-matter.schema.json](front-matter.schema.json) | The YAML front-matter every file under `docs/` carries |

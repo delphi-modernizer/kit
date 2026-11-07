@@ -15,3 +15,5 @@ kit follows [Semantic Versioning](docs/VERSIONING.md).
 - `targets/dotnet` and `targets/jvm`: stack candidates, decisions to make, Delphi semantic differences, coding
   standards and quality baselines.
 - `tools/validate.py`: consistency checks for all of the above.
+- `spec/gates.json`: a `name` for every gate (Project setup, Discovery, Requirements, Architecture, Final plan), the
+  words the studio and `dmz` show and approval commits use; `tools/validate.py` requires one per gate, unique.

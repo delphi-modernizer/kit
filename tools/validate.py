@@ -134,6 +134,12 @@ class KitValidator:
         gate_ids = [g["id"] for g in gates["gates"]]
         if gate_ids != [f"G{n}" for n in range(5)]:
             self.report.add("spec/gates.json", "must list G0 to G4 in order")
+        names = [str(g.get("name", "")).strip() for g in gates["gates"]]
+        for gate, name in zip(gates["gates"], names, strict=True):
+            if not name:
+                self.report.add("spec/gates.json", f"{gate['id']} has no name")
+        if len(set(names)) != len(names):
+            self.report.add("spec/gates.json", "gate names must be unique")
         for gate in gates["gates"]:
             for requirement in gate["requires"]["deliverables"]:
                 if requirement["id"] not in known:
