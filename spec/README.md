@@ -104,6 +104,10 @@ Every finding is labelled with how it is known, at the start of the statement:
 
 ## Gates and content hashes
 
+Each gate has an `id` that tools use and a `name` that people see, such as `Discovery` for G1. Names are non-empty
+and unique. The studio and `dmz` show the name; the approval commit names the gate in its subject and carries the ID in
+a `Gate:` trailer.
+
 A gate's approval records a SHA-256 content hash over the gate's files: the main file and every supporting
 (`part-of`) file of each deliverable the gate requires, plus the files in its `alsoHashes`. For each file, in ordinal
 order of its workspace-relative path with `/` separators, the hash takes the UTF-8 bytes of the path, a NUL byte, the

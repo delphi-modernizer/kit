@@ -98,7 +98,7 @@ class ValidateTests(unittest.TestCase):
             spec["gates"][2]["name"] = spec["gates"][1]["name"]
             gates.write_text(json.dumps(spec), encoding="utf-8")
 
-            self.assertTrue(any("gate names must be unique" in p for p in problems_in(root)))
+            self.assertTrue(any("G2 shares its name" in p for p in problems_in(root)))
 
     def test_a_missing_deliverable_file_is_reported(self) -> None:
         with KitCopy() as root:

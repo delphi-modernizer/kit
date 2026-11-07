@@ -138,8 +138,8 @@ class KitValidator:
         for gate, name in zip(gates["gates"], names, strict=True):
             if not name:
                 self.report.add("spec/gates.json", f"{gate['id']} has no name")
-        if len(set(names)) != len(names):
-            self.report.add("spec/gates.json", "gate names must be unique")
+            elif names.count(name) > 1:
+                self.report.add("spec/gates.json", f"{gate['id']} shares its name {name} with another gate")
         for gate in gates["gates"]:
             for requirement in gate["requires"]["deliverables"]:
                 if requirement["id"] not in known:
