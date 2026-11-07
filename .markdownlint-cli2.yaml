@@ -6,3 +6,4 @@ ignores:
   - "**/target/**"
   - "**/bin/**"
   - "**/obj/**"
+  - ".venv/**"

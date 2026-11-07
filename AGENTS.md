@@ -12,7 +12,9 @@ This repository is the methodology: specification, templates, agent roles and ta
    files only in `spec/deliverables.json`. Other files reference them.
 3. **Templates stay empty of records.** Guidance goes in HTML comments; a template defines or references no ID.
 4. **Minimum change.** No new sections, rules or fields that no workspace needs.
-5. **Comments** in `tools/` follow [docs/COMMENTS.md](docs/COMMENTS.md); prose follows the
+5. **Comments** in `tools/` follow [docs/COMMENTS.md](docs/COMMENTS.md); the Python follows the organization's
+   [Python style](https://github.com/delphi-modernizer/.github/blob/main/standards/python/PYTHON-STYLE.md), the Google
+   Python Style Guide; prose follows the
    [engineering standards](https://github.com/delphi-modernizer/.github/blob/main/standards/STANDARDS.md).
 
 ## Gates
@@ -20,9 +22,12 @@ This repository is the methodology: specification, templates, agent roles and ta
 All must pass before a change is done:
 
 ```bash
-python3 tools/validate.py
-ruff format --check tools && ruff check tools
-python3 -m unittest discover -s tools -p "test_*.py"
+uv run python tools/validate.py
+uv run isort --check-only tools tests && uv run pyink --check tools tests
+uv run pylint tools
+uv run pylint --disable=missing-docstring,redefined-outer-name,unused-argument,protected-access,duplicate-code,too-many-locals,use-implicit-booleaness-not-comparison,unbalanced-tuple-unpacking tests
+uv run mypy && uv run pyright
+uv run pytest
 markdownlint-cli2
 (cd targets/jvm/quality-baseline && mvn -B verify)
 (cd targets/dotnet/quality-baseline && dotnet format Modernized.slnx --verify-no-changes --severity warn && dotnet build Modernized.slnx -c Release)
