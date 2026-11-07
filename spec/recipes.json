@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "recipes": [
+    {
+      "id": "pa-consolidate",
+      "title": "Consolidate the baseline",
+      "agent": "principal-architect",
+      "skill": "consolidate-baseline",
+      "argument": {
+        "name": "gate",
+        "required": false,
+        "description": "The gate to prepare, G0 to G4."
+      },
+      "writes": [
+        "D01",
+        "D16"
+      ]
+    },
+    {
+      "id": "ws01-discover",
+      "title": "Inventory and discovery report",
+      "agent": "ws01-legacy-discovery",
+      "skill": "discover",
+      "argument": {
+        "name": "focus",
+        "required": false,
+        "description": "An area to look at first."
+      },
+      "writes": [
+        "D02"
+      ]
+    },
+    {
+      "id": "ws01-business-rules",
+      "title": "Extract business rules",
+      "agent": "ws01-legacy-discovery",
+      "skill": "extract-business-rules",
+      "argument": {
+        "name": "scope",
+        "required": true,
+        "description": "A unit, form, module or folder under legacy/."
+      },
+      "writes": [
+        "D03"
+      ]
+    },
+    {
+      "id": "ws02-frs",
+      "title": "Functional requirements",
+      "agent": "ws02-requirements",
+      "skill": "write-frs",
+      "argument": {
+        "name": "area",
+        "required": false,
+        "description": "A functional area."
+      },
+      "writes": [
+        "D03"
+      ]
+    },
+    {
+      "id": "ws02-nfr",
+      "title": "Non-functional requirements",
+      "agent": "ws02-requirements",
+      "skill": "write-nfr",
+      "argument": {
+        "name": "category",
+        "required": false,
+        "description": "PERF, SCAL, AVAIL, SEC, MAINT, USAB, COMPAT, OBS, DATA or OTHER."
+      },
+      "writes": [
+        "D04"
+      ]
+    },
+    {
+      "id": "ws03-current-state",
+      "title": "Current-state architecture",
+      "agent": "ws03-architecture",
+      "skill": "assess-current-state",
+      "argument": {
+        "name": "subsystem",
+        "required": false,
+        "description": "A subsystem to assess first."
+      },
+      "writes": [
+        "D05",
+        "D06"
+      ]
+    },
+    {
+      "id": "ws03-adr",
+      "title": "Architecture decision record",
+      "agent": "ws03-architecture",
+      "skill": "write-adr",
+      "argument": {
+        "name": "decision",
+        "required": true,
+        "description": "The decision to record."
+      },
+      "writes": [
+        "D09"
+      ]
+    },
+    {
+      "id": "ws04-data-integration",
+      "title": "Data and integration strategy",
+      "agent": "ws04-data-integration",
+      "skill": "assess-data-integration",
+      "argument": {
+        "name": "target",
+        "required": false,
+        "description": "A database or integration to start with."
+      },
+      "writes": [
+        "D10",
+        "D11"
+      ]
+    },
+    {
+      "id": "ws05-plan",
+      "title": "Migration plan, roadmap and cutover",
+      "agent": "ws05-migration-planning",
+      "skill": "plan-migration",
+      "argument": {
+        "name": "scope",
+        "required": false,
+        "description": "A part of the system to plan first."
+      },
+      "writes": [
+        "D13",
+        "D15",
+        "D17",
+        "D18",
+        "D19"
+      ]
+    },
+    {
+      "id": "ws06-quality-security",
+      "title": "Testing, security and compliance",
+      "agent": "ws06-quality-security",
+      "skill": "plan-testing-security",
+      "argument": {
+        "name": "area",
+        "required": false,
+        "description": "An area to cover first."
+      },
+      "writes": [
+        "D12",
+        "D14",
+        "D20"
+      ]
+    }
+  ]
+}

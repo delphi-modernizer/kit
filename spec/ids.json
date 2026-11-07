@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "kinds": [
+    {
+      "prefix": "DEC",
+      "name": "Decision",
+      "pattern": "DEC-\\d{3,}",
+      "home": [
+        "docs/00-project-charter/decision-log.md"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "ASM",
+      "name": "Assumption",
+      "pattern": "ASM-\\d{3,}",
+      "home": [
+        "docs/00-project-charter/assumptions.md"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "Q",
+      "name": "Open question",
+      "pattern": "Q-\\d{3,}",
+      "home": [
+        "docs/00-project-charter/open-questions.md"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "CF",
+      "name": "Baseline conflict",
+      "pattern": "CF-\\d{3,}",
+      "home": [
+        "docs/00-project-charter/baseline-conflicts.md"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "BR",
+      "name": "Business rule",
+      "pattern": "BR-\\d{3,}",
+      "home": [
+        "docs/02-functional-requirements/business-rules.md"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "FR",
+      "name": "Functional requirement",
+      "pattern": "FR-\\d{3,}",
+      "home": [
+        "docs/02-functional-requirements/D03-functional-requirements.md"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "WF",
+      "name": "Business workflow",
+      "pattern": "WF-\\d{3,}",
+      "home": [
+        "docs/02-functional-requirements/**"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "NFR",
+      "name": "Non-functional requirement",
+      "pattern": "NFR-(?:PERF|SCAL|AVAIL|SEC|MAINT|USAB|COMPAT|OBS|DATA|OTHER)-\\d{3,}",
+      "home": [
+        "docs/03-non-functional-requirements/**"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "TD",
+      "name": "Technical debt item",
+      "pattern": "TD-\\d{3,}",
+      "home": [
+        "docs/04-current-state/**"
+      ],
+      "definedBy": "any"
+    },
+    {
+      "prefix": "ADR",
+      "name": "Architecture decision record",
+      "pattern": "ADR-\\d{4}",
+      "home": [
+        "docs/05-target-architecture/adr/ADR-*.md"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "DM",
+      "name": "Data migration item",
+      "pattern": "DM-\\d{3,}",
+      "home": [
+        "docs/06-data-migration/**"
+      ],
+      "definedBy": "any"
+    },
+    {
+      "prefix": "INT",
+      "name": "Integration",
+      "pattern": "INT-\\d{3,}",
+      "home": [
+        "docs/07-integrations/**"
+      ],
+      "definedBy": "any"
+    },
+    {
+      "prefix": "CMP",
+      "name": "Compliance obligation",
+      "pattern": "CMP-\\d{3,}",
+      "home": [
+        "docs/08-security-compliance/**"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "WP",
+      "name": "Work package",
+      "pattern": "WP-\\d{3,}",
+      "home": [
+        "docs/09-migration-strategy/**"
+      ],
+      "definedBy": "heading"
+    },
+    {
+      "prefix": "TC",
+      "name": "Test scenario",
+      "pattern": "TC-\\d{3,}",
+      "home": [
+        "docs/10-testing-quality/**"
+      ],
+      "definedBy": "any"
+    },
+    {
+      "prefix": "QG",
+      "name": "Quality gate",
+      "pattern": "QG-\\d{2,}",
+      "home": [
+        "docs/10-testing-quality/**"
+      ],
+      "definedBy": "any"
+    },
+    {
+      "prefix": "RISK",
+      "name": "Risk",
+      "pattern": "RISK-\\d{3,}",
+      "home": [
+        "docs/12-risk-management/D16-risk-register.md"
+      ],
+      "definedBy": "table-row"
+    },
+    {
+      "prefix": "MS",
+      "name": "Milestone",
+      "pattern": "MS-\\d{2,}",
+      "home": [
+        "docs/13-project-roadmap/**"
+      ],
+      "definedBy": "any"
+    }
+  ],
+  "nfrCategories": {
+    "PERF": "Performance and efficiency",
+    "SCAL": "Scalability",
+    "AVAIL": "Availability and reliability",
+    "SEC": "Security",
+    "MAINT": "Maintainability and extensibility",
+    "USAB": "Usability and accessibility",
+    "COMPAT": "Compatibility and portability",
+    "OBS": "Observability and operability",
+    "DATA": "Data integrity and consistency",
+    "OTHER": "Regulatory, legal, privacy and other"
+  },
+  "evidence": {
+    "pattern": "(?:\\.\\./)*legacy/([^\\s)\\]#`'\\\"]+)#L(\\d+)(?:-L(\\d+))?",
+    "root": "legacy/",
+    "groups": {
+      "path": 1,
+      "start": 2,
+      "end": 3
+    }
+  },
+  "delimiters": {
+    "before": "(?<![A-Za-z0-9_-])",
+    "after": "(?![A-Za-z0-9_]|-[A-Za-z0-9])"
+  }
+}

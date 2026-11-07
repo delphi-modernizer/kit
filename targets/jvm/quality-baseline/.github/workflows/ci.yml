@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  comments:
+    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@main
+
+  drift:
+    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@main
+    with:
+      files: |
+        .editorconfig=standards/java/.editorconfig
+        docs/COMMENTS.md=COMMENTS.md
+
+  dependencies:
+    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@main
+
+  verify:
+    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@main
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

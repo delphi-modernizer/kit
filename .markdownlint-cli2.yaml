@@ -1,0 +1,8 @@
+globs:
+  - "**/*.md"
+ignores:
+  - "CLAUDE.md"
+  - "workspace/CLAUDE.md"
+  - "**/target/**"
+  - "**/bin/**"
+  - "**/obj/**"

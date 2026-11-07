@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  comments:
+    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@main
+
+  drift:
+    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@main
+    with:
+      files: |
+        .editorconfig=standards/csharp/.editorconfig
+        tests/.editorconfig=standards/csharp/tests.editorconfig
+        docs/COMMENTS.md=COMMENTS.md
+        docs/csharp-style.md=standards/csharp/csharp-style.md
+
+  dependencies:
+    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@main
+
+  build:
+    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@main
+    with:
+      solution: Modernized.slnx
+      os: '["ubuntu-latest", "windows-latest"]'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

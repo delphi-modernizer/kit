@@ -1,0 +1,4 @@
+.modernizer/runs/
+.modernizer/locks/
+.modernizer/scans/*/
+!.modernizer/scans/latest/

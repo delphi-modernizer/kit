@@ -1,0 +1,46 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Require the tag to match VERSION
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version=$(cat VERSION)
+          if [ "v$version" != "$TAG" ]; then
+            echo "::error::Tag $TAG does not match VERSION $version."
+            exit 1
+          fi
+
+      - name: Validate the kit
+        run: python3 tools/validate.py
+
+      - name: Package the kit
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          mkdir dist
+          zip -qr "dist/kit-$TAG.zip" spec methodology workspace targets docs VERSION CHANGELOG.md LICENSE README.md
+          (cd dist && sha256sum "kit-$TAG.zip" > SHA256SUMS)
+
+      - uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
+        with:
+          files: |
+            dist/kit-*.zip
+            dist/SHA256SUMS
+          fail_on_unmatched_files: true

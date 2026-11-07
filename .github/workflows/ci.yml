@@ -1,0 +1,61 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check that spec, templates, agents, skills and links agree
+        run: python3 tools/validate.py
+      - name: Test the validator
+        run: python3 -m unittest discover -s tools -p "test_*.py"
+      - name: Format and lint the validator
+        run: pipx run ruff==0.16.9 format --check tools && pipx run ruff==0.16.9 check tools
+      - name: Lint the Markdown
+        run: npx --yes markdownlint-cli2@0.24.0
+
+  comments:
+    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    with:
+      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
+
+  drift:
+    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    with:
+      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
+      files: |
+        docs/COMMENTS.md=COMMENTS.md
+        targets/dotnet/quality-baseline/.editorconfig=standards/csharp/.editorconfig
+        targets/dotnet/quality-baseline/tests/.editorconfig=standards/csharp/tests.editorconfig
+        targets/dotnet/quality-baseline/docs/COMMENTS.md=COMMENTS.md
+        targets/dotnet/quality-baseline/docs/csharp-style.md=standards/csharp/csharp-style.md
+        targets/jvm/quality-baseline/.editorconfig=standards/java/.editorconfig
+        targets/jvm/quality-baseline/docs/COMMENTS.md=COMMENTS.md
+
+  dependencies:
+    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+
+  dotnet-baseline:
+    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    with:
+      working-directory: targets/dotnet/quality-baseline
+      solution: Modernized.slnx
+      os: '["ubuntu-latest", "windows-latest"]'
+
+  jvm-baseline:
+    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    with:
+      working-directory: targets/jvm/quality-baseline
