@@ -23,9 +23,12 @@ Copy `workspace/` to the root of a new private repository, put the Delphi source
 ## Checks
 
 ```bash
-python3 tools/validate.py
-ruff format --check tools && ruff check tools
-python3 -m unittest discover -s tools -p "test_*.py"
+uv run python tools/validate.py
+uv run isort --check-only tools tests && uv run pyink --check tools tests
+uv run pylint tools
+uv run pylint --disable=missing-docstring,redefined-outer-name,unused-argument,protected-access,duplicate-code,too-many-locals,use-implicit-booleaness-not-comparison,unbalanced-tuple-unpacking tests
+uv run mypy && uv run pyright
+uv run pytest
 markdownlint-cli2
 (cd targets/jvm/quality-baseline && mvn -B verify)
 (cd targets/dotnet/quality-baseline && dotnet build Modernized.slnx -c Release)

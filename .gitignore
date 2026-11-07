@@ -1,8 +1,9 @@
 __pycache__/
 *.pyc
-.ruff_cache/
+.venv/
+.mypy_cache/
+.pytest_cache/
 bin/
 obj/
 target/
 dist/
-uv.lock

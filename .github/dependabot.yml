@@ -6,6 +6,12 @@ updates:
       interval: weekly
     commit-message:
       prefix: ci
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
   - package-ecosystem: nuget
     directory: /targets/dotnet/quality-baseline
     schedule:

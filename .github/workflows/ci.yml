@@ -18,24 +18,29 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.13.6'
       - name: Check that spec, templates, agents, skills and links agree
-        run: python3 tools/validate.py
-      - name: Test the validator
-        run: python3 -m unittest discover -s tools -p "test_*.py"
-      - name: Format and lint the validator
-        run: pipx run ruff==0.16.9 format --check tools && pipx run ruff==0.16.9 check tools
+        run: uv run --frozen python tools/validate.py
       - name: Lint the Markdown
         run: npx --yes markdownlint-cli2@0.24.0
 
-  comments:
-    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+  python:
+    uses: delphi-modernizer/.github/.github/workflows/python-ci.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
     with:
-      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
+      sources: tools
+      tests: tests
+
+  comments:
+    uses: delphi-modernizer/.github/.github/workflows/comment-lint.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
+    with:
+      standards-ref: 539243d668f72d31bbf8ee5c6ee732d0ed76bd95
 
   drift:
-    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    uses: delphi-modernizer/.github/.github/workflows/standards-drift.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
     with:
-      standards-ref: f30fa172da63c775c05b12970b6aa66d3b3495b9
+      standards-ref: 539243d668f72d31bbf8ee5c6ee732d0ed76bd95
       files: |
         docs/COMMENTS.md=COMMENTS.md
         targets/dotnet/quality-baseline/.editorconfig=standards/csharp/.editorconfig
@@ -46,16 +51,16 @@ jobs:
         targets/jvm/quality-baseline/docs/COMMENTS.md=COMMENTS.md
 
   dependencies:
-    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    uses: delphi-modernizer/.github/.github/workflows/dependency-review.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
 
   dotnet-baseline:
-    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    uses: delphi-modernizer/.github/.github/workflows/dotnet-ci.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
     with:
       working-directory: targets/dotnet/quality-baseline
       solution: Modernized.slnx
       os: '["ubuntu-latest", "windows-latest"]'
 
   jvm-baseline:
-    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@f30fa172da63c775c05b12970b6aa66d3b3495b9
+    uses: delphi-modernizer/.github/.github/workflows/java-ci.yml@539243d668f72d31bbf8ee5c6ee732d0ed76bd95
     with:
       working-directory: targets/jvm/quality-baseline

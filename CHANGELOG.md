@@ -17,3 +17,9 @@ kit follows [Semantic Versioning](docs/VERSIONING.md).
 - `tools/validate.py`: consistency checks for all of the above.
 - `spec/gates.json`: a `name` for every gate (Project setup, Discovery, Requirements, Architecture, Final plan), the
   words the studio and `dmz` show and approval commits use; `tools/validate.py` requires one per gate, unique.
+
+### Changed
+
+- `tools/validate.py` and its tests follow the organization's Python style, the Google Python Style Guide: pyink,
+  isort, pylint, mypy `strict` and pyright, with pytest. The tests moved to `tests/`, and the tools run through uv on
+  Python 3.14 from the committed `uv.lock`. The spec is unchanged.
