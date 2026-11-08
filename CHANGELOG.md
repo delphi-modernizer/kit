@@ -5,6 +5,8 @@ kit follows [Semantic Versioning](docs/VERSIONING.md).
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-08
+
 ### Added
 
 - `spec/`: ID kinds, deliverables D01–D20, gates G0–G4, trace rules TR001–TR014, agent recipes, and schemas for
@@ -13,15 +15,12 @@ kit follows [Semantic Versioning](docs/VERSIONING.md).
 - `workspace/`: operating rules, seven Claude Code agents, eleven skills, permission rules with the guard hook, and
   templates for every deliverable and register.
 - `targets/dotnet` and `targets/jvm`: stack candidates, decisions to make, Delphi semantic differences, coding
-  standards and quality baselines.
-- `tools/validate.py`: consistency checks for all of the above.
+  standards and quality baselines. The .NET baseline runs its tests on Microsoft.Testing.Platform with xunit v3 4.x
+  and coverlet.MTP, and `Modernized.Core` ships `Result<T>` with its tests.
+- `tools/validate.py`: consistency checks for all of the above, written to the organization's Python style (pyink,
+  isort, pylint, mypy `strict`, pyright and pytest) and run through uv on Python 3.14 from the committed `uv.lock`.
 - `spec/gates.json`: a `name` for every gate (Project setup, Discovery, Requirements, Architecture, Final plan), the
   words the studio and `dmz` show and approval commits use; `tools/validate.py` requires one per gate, unique.
 
-### Changed
-
-- `tools/validate.py` and its tests follow the organization's Python style, the Google Python Style Guide: pyink,
-  isort, pylint, mypy `strict` and pyright, with pytest. The tests moved to `tests/`, and the tools run through uv on
-  Python 3.14 from the committed `uv.lock`. The spec is unchanged.
-- The .NET quality baseline runs its tests on Microsoft.Testing.Platform with xunit v3 4.x and coverlet.MTP, as the
-  organization's `dotnet-ci` now does, and `Modernized.Core` ships `Result<T>` with its tests.
+[Unreleased]: https://github.com/delphi-modernizer/kit/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/delphi-modernizer/kit/releases/tag/v0.1.0
