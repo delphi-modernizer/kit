@@ -18,4 +18,4 @@ migration the release notes describe.
 1. Update [CHANGELOG.md](../CHANGELOG.md) and [VERSION](../VERSION) on a `release/` branch.
 2. Merge into `main` and tag `vX.Y.Z`.
 3. The release workflow publishes `kit-vX.Y.Z.zip` and `SHA256SUMS`.
-4. Bump `kit.lock.json` in the engine to the tag in a pull request; the engine's CI runs its tests against the new kit.
+4. Point the engine's `kit` submodule at the tag in a pull request; the engine's CI runs its tests against the new kit.
