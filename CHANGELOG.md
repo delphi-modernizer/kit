@@ -23,3 +23,5 @@ kit follows [Semantic Versioning](docs/VERSIONING.md).
 - `tools/validate.py` and its tests follow the organization's Python style, the Google Python Style Guide: pyink,
   isort, pylint, mypy `strict` and pyright, with pytest. The tests moved to `tests/`, and the tools run through uv on
   Python 3.14 from the committed `uv.lock`. The spec is unchanged.
+- The .NET quality baseline runs its tests on Microsoft.Testing.Platform with xunit v3 4.x and coverlet.MTP, as the
+  organization's `dotnet-ci` now does, and `Modernized.Core` ships `Result<T>` with its tests.

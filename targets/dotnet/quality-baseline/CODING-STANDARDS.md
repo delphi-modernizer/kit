@@ -30,7 +30,7 @@ CI runs all of them through the organization's reusable workflows; see [.github/
 
 - Behaviour preserved from the legacy system is pinned by characterization tests before it is reimplemented, and the
   tests reference the `BR-` and `FR-` IDs they protect.
-- Expected failures are values (`Result<T>`), not exceptions; exceptions are for the unexpected.
+- Expected failures are values (`Result<T>` in `Modernized.Core`), not exceptions; exceptions are for the unexpected.
 - Every non-obvious pattern, algorithm, data structure or dependency has an ADR in the workspace's
   `docs/05-target-architecture/adr/` before or with the code, stating the alternatives and their complexity.
 - No abstraction for code used once. MediatR, AutoMapper and FluentAssertions are not used.
